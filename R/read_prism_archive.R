@@ -19,7 +19,7 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
     data_tables <- selected_sheet_json$table$uid
     data_table_folder <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = data_tables, x = path))
     data_table_num <- subset.data.frame(x = data_table_folder, subset = grepl(pattern = ".csv", x = path))[["rowid"]]
-    sheet_data <- read_csv(archive_read(archive = dot_prism_file, file = data_table_num), col_names = FALSE)
+    sheet_data <- read_csv(archive_read(archive = dot_prism_file, file = data_table_num), col_names = FALSE, show_col_types = FALSE)
     # Add dataset info
     sheet_title <- selected_sheet_json$title
     # y metadata
