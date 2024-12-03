@@ -4,7 +4,7 @@
 ## usethis namespace: start
 #' @importFrom archive archive_read
 #' @importFrom jsonlite fromJSON
-#' @importFrom utils read.csv
-#' @importFrom utils type.convert
+#' @importFrom readr read_csv
+#' @importFrom readr type_convert
 ## usethis namespace: end
 NULL

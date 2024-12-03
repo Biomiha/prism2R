@@ -6,7 +6,7 @@
 #' @importFrom archive archive
 #' @importFrom archive archive_read
 #' @importFrom jsonlite fromJSON
-#' @importFrom utils read.csv
+#' @importFrom readr read_csv
 #' @noRd
 read_prism_archive <- function(dot_prism_file, selected_sheet) {
   files_in_archive <- archive(dot_prism_file)
@@ -19,7 +19,7 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
     data_tables <- selected_sheet_json$table$uid
     data_table_folder <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = data_tables, x = path))
     data_table_num <- subset.data.frame(x = data_table_folder, subset = grepl(pattern = ".csv", x = path))[["rowid"]]
-    sheet_data <- read.csv(archive_read(archive = dot_prism_file, file = data_table_num), header = FALSE, stringsAsFactors = FALSE)
+    sheet_data <- read_csv(archive_read(archive = dot_prism_file, file = data_table_num), col_names = FALSE)
     # Add dataset info
     sheet_title <- selected_sheet_json$title
     # y metadata
@@ -123,8 +123,7 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
     } else if(is.null(selected_sheet_json$table$xDataSet) & !is.null(selected_sheet_json$table$rowTitlesDataSet)) {
       # assign V1 as rownames if appropriate
       if(length(colnames(sheet_data)) - length(y_col_names) == 1) {
-        rownames(sheet_data) <- sheet_data[,1]
-        sheet_data <- sheet_data[, -1]
+        colnames(sheet_data)[[1]] <- "rowname"
       }
     }
     return(sheet_data)
