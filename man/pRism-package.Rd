@@ -6,7 +6,7 @@
 \alias{pRism-package}
 \title{pRism: Read Prism Tables Into R}
 \description{
-This package provides functions to read and parse GraphPad Prism files (.pzfx or .prism) into R data frames, enabling users to analyzse and manipulate their data within the R environment.
+This package provides functions to read and parse GraphPad Prism files (.pzfx or .prism) into R data frames, enabling users to analyse and manipulate their data within the R environment. It currently consists of two functions - `get_table_names` and `read_prism`, both of which take the file path to a prism file as input and output either the table names or the table contents themselves.
 }
 \author{
 \strong{Maintainer}: Miha Kosmac \email{biomiha@gmail.com}
