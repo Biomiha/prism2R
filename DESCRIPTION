@@ -1,0 +1,16 @@
+Package: pRism
+Title: Read Prism Tables Into R
+Version: 0.1.0
+Authors@R: 
+    person("Miha", "Kosmac", , "biomiha@gmail.com", role = c("aut", "cre"))
+Description: This package provides functions to read and parse GraphPad Prism files (.pzfx or .prism) into R data frames, enabling users to analyzse and manipulate their data within the R environment.
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    archive,
+    jsonlite,
+    utils,
+    xml2

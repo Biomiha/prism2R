@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-MIT License
+# MIT License
 
-Copyright (c) 2024 Biomiha
+Copyright (c) 2024 pRism authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-=======
-YEAR: 2024
-COPYRIGHT HOLDER: pRism authors
->>>>>>> d2898c19d55bbbe328f19c1f516d3126d0ac0a8b
