@@ -121,9 +121,10 @@ read_pzfx_table <- function(pzfx_table) {
     colnames(y_vals_all) <- c(x_col_name, y_col_names)
   } else if(table_attrs[["XFormat"]] == "none") {
     row_cols_xml <- xml2::xml_find_all(x = pzfx_table, xpath = ".//RowTitlesColumn")
-    stopifnot(length(row_cols_xml) == 1)
-    row_names <- xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = row_cols_xml, xpath = ".//Subcolumn")))
-    y_vals_all <- tibble::add_column(y_vals_all, rowname = row_names, .before = 1)
+    if(length(row_cols_xml) == 1) {
+      row_names <- xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = row_cols_xml, xpath = ".//Subcolumn")))
+      y_vals_all <- tibble::add_column(y_vals_all, rowname = row_names, .before = 1)
+    }
   }
   return(y_vals_all)
 }
