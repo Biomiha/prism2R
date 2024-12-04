@@ -5,5 +5,6 @@
 #' @noRd
 getExtension <- function(file){
   ex <- strsplit(basename(file), split="\\.")[[1]]
-  return(tail(ex, n = 1))
+  if(length(ex) < 2) stop("Input file must have an extension.")
+  return(ex[[length(ex)]])
 }

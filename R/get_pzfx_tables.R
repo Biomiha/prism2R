@@ -4,7 +4,7 @@
 #' @param pzfx_xml - an xml document
 #' @noRd
 get_pzfx_tables <- function(pzfx_xml) {
-  stopifnot("xml_document" %in% class(pzfx_xml)) # check if xml was parsed correctly
+  if(!"xml_document" %in% class(pzfx_xml)) stop("Not an xml document") # check if xml was parsed correctly
   pzfx_tables <- xml2::xml_find_all(x = pzfx_xml, xpath = ".//Table")
   xml2::xml_text(xml2::xml_find_first(x = pzfx_tables, xpath = ".//Title"))
 }
