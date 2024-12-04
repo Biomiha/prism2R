@@ -4,7 +4,7 @@
 #' @param pzfx_file a string - the file path
 #' @noRd
 parse_prism_xml <- function(pzfx_file) {
-  stopifnot(extract_format(pzfx_file) == "pzfx")
+  if(extract_format(pzfx_file) != "pzfx") stop("Not a '.pzfx' file.")
   prism_xml <- xml2::read_xml(pzfx_file)
   # strip namespaces
   xml2::xml_ns_strip(x = prism_xml)

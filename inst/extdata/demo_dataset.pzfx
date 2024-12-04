@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><GraphPadPrismFile PrismXMLVersion="5.00">
+<Created>
+<OriginalVersion CreatedByProgram="GraphPad Prism" CreatedByVersion="10.4.0.527" Login="mihakosmac" DateTime="2024-12-04T16:55:41-00:00"></OriginalVersion>
+</Created>
+<InfoSequence>
+<Ref ID="Info0" Selected="1"></Ref>
+</InfoSequence>
+<Info ID="Info0">
+<Title>Project info 1</Title>
+<Notes></Notes>
+<Constant><Name>Experiment Date</Name><Value>2024-12-03</Value></Constant>
+<Constant><Name>Experiment ID</Name><Value></Value></Constant>
+<Constant><Name>Notebook ID</Name><Value></Value></Constant>
+<Constant><Name>Project</Name><Value></Value></Constant>
+<Constant><Name>Experimenter</Name><Value></Value></Constant>
+<Constant><Name>Protocol</Name><Value></Value></Constant>
+</Info>
+
+<TableSequence Selected="1">
+<Ref ID="Table0" Selected="1"></Ref>
+</TableSequence>
+<Table ID="Table0" XFormat="numbers" YFormat="replicates" Replicates="3" TableType="XY" EVFormat="AsteriskAfterNumber">
+<Title>XY: Entering replicate data</Title>
+<FloatingNote ID="Sticky0" Auto="0" Color="Yellow" Left="451" Top="212" Width="684" Height="482" ScrWidth="1920" ScrHeight="1080" ScrDPI="96">
+<WebLink Flags="0" ToolTip="https://www.graphpad.com/guides/prism/latest/user-guide/index.htm?xy_table.htm" URL="@help:xy_table.htm">
+Learn more about XY tables.
+</WebLink>
+
+<B><Font Size="11" Color="#000000" Face="Verdana">How the data are arranged</Font></B>
+<Font Size="11" Color="#000000" Face="Verdana"><BR></BR>The X column records time. The response at each time point is entered in triplicate for Control and  Treated conditions. Some cells are blank to denote missing data.</Font>
+<B><Font Size="11" Color="#000000" Face="Verdana"><BR></BR><BR></BR>How to graph these data</Font></B>
+<Font Size="11" Color="#000000" Face="Verdana"><BR></BR>Look in the navigator to the left and find the Graphs folder. Click on the graph in bold. Prism will present several choices for graphing these data </Font>
+<B><Font Size="11" Color="#000000" Face="Verdana"><BR></BR><BR></BR><BR></BR>Notes</Font></B>
+<Font Size="11" Color="#000000" Face="Verdana"><BR></BR>-This table was created with three subcolumns for entry of triplicate values. When you create a new table, you can choose the number of subcolumns you need for your data.<BR></BR><BR></BR>-Some values are left blank. Prism treats blank spots as missing values, and never treats these cells as if you had entered zero.<BR></BR><BR></BR>-Don’t mix up the X column for entry of X values (numbers) and the column for row titles (text).<BR></BR><BR></BR>-When you go to make a graph of these data, you can choose to:<BR></BR>        *Plot each individual replicate so you can really see your data (recommended as a first step).<BR></BR>        *Plot only the means or medians.<BR></BR>        *Plot the mean or median with error bars (defined in various ways)</Font>
+</FloatingNote>
+
+<XColumn Width="81" Subcolumns="1" Decimals="1">
+<Title>Hours</Title>
+<Subcolumn>
+<d>0</d>
+<d>6</d>
+<d>12</d>
+<d>24</d>
+<d>48</d>
+<d>72</d>
+</Subcolumn>
+</XColumn>
+<XAdvancedColumn Version="1" Width="81" Decimals="1" Subcolumns="1">
+<Title>Hours</Title>
+<Subcolumn>
+<d>0</d>
+<d>6</d>
+<d>12</d>
+<d>24</d>
+<d>48</d>
+<d>72</d>
+</Subcolumn>
+</XAdvancedColumn>
+<YColumn Width="243" Decimals="0" Subcolumns="3">
+<Title>Control</Title>
+<Subcolumn>
+<d>45</d>
+<d>56</d>
+<d>76</d>
+<d>81</d>
+<d>99</d>
+<d>97</d>
+</Subcolumn>
+<Subcolumn>
+<d>34</d>
+<d>58</d>
+<d>72</d>
+<d>95</d>
+<d>100</d>
+<d>110</d>
+</Subcolumn>
+<Subcolumn>
+<d></d>
+<d>61</d>
+<d>77</d>
+<d>83</d>
+<d>104</d>
+<d>115</d>
+</Subcolumn>
+</YColumn>
+<YColumn Width="243" Decimals="0" Subcolumns="3">
+<Title>Treated</Title>
+<Subcolumn>
+<d>34</d>
+<d>41</d>
+<d>52</d>
+<d>63</d>
+<d>72</d>
+<d>78</d>
+</Subcolumn>
+<Subcolumn>
+<d>31</d>
+<d>43</d>
+<d>55</d>
+<d>63</d>
+<d>67</d>
+<d>87</d>
+</Subcolumn>
+<Subcolumn>
+<d>29</d>
+<d>42</d>
+<d>55</d>
+<d></d>
+<d>81</d>
+<d></d>
+</Subcolumn>
+</YColumn>
+</Table>
+
+<!--Analyses, graphs and layouts as compressed binary. Don&apos;t edit this part of the file.-->
+
+<Template dt:dt="bin.base64" xmlns:dt="urn:schemas-microsoft-com:datatypes">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</Template></GraphPadPrismFile>

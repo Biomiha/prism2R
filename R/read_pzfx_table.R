@@ -1,10 +1,6 @@
-#' Parse different types of pzfx tables
-#' This is a utility function that parses the table contents of individual selected tables of the older prism format ".pzfx".
-#'
-#' @param pzfx_table an xml_document
-#' @noRd
 read_pzfx_table <- function(pzfx_table) {
   table_attrs <- xml2::xml_attrs(pzfx_table)
+
   # QC table attributes
   x_column_exists <- "XFormat" %in% names(table_attrs)
   y_column_exists <- "YFormat" %in% names(table_attrs)
@@ -13,6 +9,7 @@ read_pzfx_table <- function(pzfx_table) {
   y_cols_xml <- xml2::xml_find_all(x = pzfx_table, xpath = ".//YColumn")
   n_y_cols <- length(y_cols_xml)
   y_col_names <- xml2::xml_text(xml2::xml_find_all(x = y_cols_xml, xpath = ".//Title"))
+
   # If the sheet type is a y_replicates type
   if(y_column_exists) {
     if(table_attrs[["YFormat"]] == "replicates") {
@@ -110,6 +107,7 @@ read_pzfx_table <- function(pzfx_table) {
     y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
     colnames(y_vals_all) <- y_col_names
   }
+
   # XColumn
   if(table_attrs[["XFormat"]] != "none") {
     x_cols_xml <- xml2::xml_find_all(x = pzfx_table, xpath = ".//XColumn")
@@ -117,7 +115,7 @@ read_pzfx_table <- function(pzfx_table) {
     x_col_name <- xml2::xml_text(xml2::xml_find_all(x = x_cols_xml, xpath = ".//Title"))
     x_vals <- xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = x_cols_xml, xpath = ".//Subcolumn")))
     if(table_attrs[["XFormat"]] == "numbers") x_vals <- as.numeric(x_vals)
-    y_vals_all <- cbind(x_vals, y_vals_all)
+    y_vals_all <- tibble::add_column(y_vals_all, x = x_vals, .before = 1)
     colnames(y_vals_all) <- c(x_col_name, y_col_names)
   } else if(table_attrs[["XFormat"]] == "none") {
     row_cols_xml <- xml2::xml_find_all(x = pzfx_table, xpath = ".//RowTitlesColumn")
@@ -126,5 +124,5 @@ read_pzfx_table <- function(pzfx_table) {
       y_vals_all <- tibble::add_column(y_vals_all, rowname = row_names, .before = 1)
     }
   }
-  return(y_vals_all)
+  return(suppressWarnings(readr::type_convert(y_vals_all)))
 }

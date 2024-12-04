@@ -4,7 +4,9 @@
 #' @param dot_prism_file string - the file path to the .prism file
 #' @noRd
 get_prism_tables <- function(dot_prism_file) {
+  if(extract_format(dot_prism_file) != "prism") stop("Not a valid .prism file.")
   files_in_archive <- archive::archive(dot_prism_file)
+  if(nrow(files_in_archive) == 0) stop("Not a valid .prism file.")
   files_in_archive$rowid <- seq_along(files_in_archive$path)
   file_number <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = "document.json", x = path))[["rowid"]]
   top_level_json <- jsonlite::fromJSON(archive::archive_read(archive = dot_prism_file, file = file_number))
