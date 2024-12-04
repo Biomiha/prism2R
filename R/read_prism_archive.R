@@ -136,6 +136,7 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
     selected_sheet_json <- fromJSON(archive_read(archive = dot_prism_file, file = selected_sheet_num))
     read_prism_table(selected_sheet_json = selected_sheet_json, files_in_archive = files_in_archive)
   } else if (is.character(selected_sheet)) {
+    if(length(which(sheet_names %in% selected_sheet)) > 1) stop("You have chosen multiple sheets. Please choose either just one or `sheet = NA` for all.")
     selected_sheet_id <- sheet_ids[[which(sheet_names %in% selected_sheet)]]
     selected_sheet_folder <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = selected_sheet_id, x = path))
     selected_sheet_file <- subset.data.frame(x = selected_sheet_folder, subset = grepl(pattern = "sheet.json", x = path))
@@ -145,8 +146,8 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
   } else if(is.na(selected_sheet)) {
     # if no sheets are selected, the default is to read all tables into a list
     prism_tables_list <- vector("list", length = length(sheet_names))
-    prism_tables_list <- lapply(sheet_names, function(x) {
-      selected_sheet_id <- sheet_ids[[which(sheet_names %in% x)]]
+    prism_tables_list <- lapply(sheet_ids, function(x) {
+      selected_sheet_id <- x
       selected_sheet_folder <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = selected_sheet_id, x = path))
       selected_sheet_file <- subset.data.frame(x = selected_sheet_folder, subset = grepl(pattern = "sheet.json", x = path))
       if(nrow(selected_sheet_file) == 1) selected_sheet_num <- selected_sheet_file[["rowid"]]

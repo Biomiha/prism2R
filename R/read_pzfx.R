@@ -7,11 +7,13 @@
 read_pzfx <- function(pzfx_xml, selected_sheet) {
   pzfx_tables <- xml2::xml_find_all(x = pzfx_xml, xpath = ".//Table")
   if(is.numeric(selected_sheet)) {
+    if(length(selected_sheet) > 1) stop("You have chosen multiple sheets. Please choose either just one or `sheet = NA` for all.")
     read_pzfx_table(pzfx_table = pzfx_tables[[selected_sheet]])
   } else if(is.character(selected_sheet)) {
     table_names <- get_pzfx_tables(pzfx_xml)
     if(!selected_sheet %in% table_names) stop("The selected table name is not present in the selected prism file.")
     selected_sheet <- which(table_names %in% selected_sheet)
+    if(length(selected_sheet) > 1) stop("You have chosen multiple sheets. Please choose either just one or `sheet = NA` for all.")
     read_pzfx_table(pzfx_table = pzfx_tables[[selected_sheet]])
   } else if(is.na(selected_sheet)) {
     # if no sheets are selected, the default is to read all tables into a list
