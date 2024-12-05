@@ -1,25 +1,4 @@
----
-title: "Parse GraphPad Prism Files Into R"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{pRism-vignette}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-```{r, include=FALSE}
-devtools::load_all()
-```
-
+# pRism: Parse GraphPad Prism Files Into R
 ## Brief background
 
 The pRism package is heavily influenced by Yue Jiang's package called [pzfx](https://cran.r-project.org/web/packages/pzfx/ "pzfx package"). I imagine if you are looking at this package you would have most probably used his before. The main (only) reason for a new package is that with Version 10 GraphPad introduced a new file type called `.prism` that is completely different and incompatible with how the old XML-based `.pzfx` file type was parsed.
