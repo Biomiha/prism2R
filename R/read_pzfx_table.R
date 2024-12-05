@@ -16,7 +16,7 @@ read_pzfx_table <- function(pzfx_table) {
       # extract number of replicates
       n_rep <- as.numeric(table_attrs[["Replicates"]])
       # make new unique y_col_names
-      y_col_names <- paste(rep(x = y_col_names, each = n_rep), seq_len(n_rep), sep = "_")
+      if(n_rep > 1) y_col_names <- paste(rep(x = y_col_names, each = n_rep), seq_len(n_rep), sep = "_")
       y_vals_all <- lapply(X = y_cols_xml, FUN = function(xml_subcol) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
@@ -61,7 +61,7 @@ read_pzfx_table <- function(pzfx_table) {
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "SE") { # If the sheet type is a y_se type
       # make new unique y_col_names
-      y_col_names <- paste(rep(x = y_col_names, each = 2), c("Mean", "SE"), sep = "_")
+      y_col_names <- paste(rep(x = y_col_names, each = 2), c("Mean", "SEM"), sep = "_")
       y_vals_all <- lapply(X = y_cols_xml, FUN = function(xml_subcol) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })

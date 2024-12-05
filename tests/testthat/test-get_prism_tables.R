@@ -1,9 +1,11 @@
 # get_prism_tables unit tests
 # Test cases
 test_that("get_prism_tables works correctly", {
-  # Test with a valid prism file
+  tables_in_files <- c("XY: Entering replicate data", "XY: Entering mean with error values", "Grouped: Entering replicate data",
+                       "Data 6", "Survival: Two groups", "Data - missing columns", "Y SEN", "Y CVN", "Y SD", "Y SE", "Y CV", "Y error", "Y high low", "Data 6")
+  # Test with a valid .prism file
   prism_file <- system.file("extdata", "demo_dataset.prism", package = "pRism")
-  expect_equal(get_prism_tables(prism_file), c("XY: Entering replicate data"))
+  expect_equal(get_prism_tables(prism_file), tables_in_files)
 })
 
 test_that("get_prism_tables handles errors gracefully", {
