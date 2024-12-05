@@ -12,7 +12,7 @@ I had intended to only write a parser for the `.prism` file type given that [pzf
 The best way is to use the [devtools](https://devtools.r-lib.org/ "devtools package") package and install from github. It seems to understand the dependencies and build requirements. There have been issues reported with other, more lightweight package managers like `remotes` or `pak`.
 
 ```{r, eval=FALSE}
-devtools::install_github("biomiha/pRism")
+devtools::install_github("biomiha/pRism", build_vignettes = TRUE)
 library(pRism)
 ```
 
