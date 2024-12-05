@@ -46,7 +46,9 @@ read_prism(demo_file, sheet = "XY: Entering replicate data")
 read_prism(demo_file, sheet = NA)
 ```
 
-\newline
+\
+&nbsp;
+\
 
 ### In case you want to read in multiple tables but not all
 
