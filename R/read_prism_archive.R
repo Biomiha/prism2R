@@ -33,13 +33,26 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
-      y_col_names <- paste(rep(x = y_col_names, each = n_rep), seq_len(n_rep), sep = "_")
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+          } else x
+      })
+      # If n replicates is more than 1 make unique names, otherwise keep as is
+      if(n_rep > 1) y_col_names <- paste(rep(x = y_col_names, each = n_rep), seq_len(n_rep), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_sd_n") {
       # If the sheet type is a y_sd_n type
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 3), c("Mean", "SD", "N"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_se_n") {
@@ -47,6 +60,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 3), c("Mean", "SEM", "N"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_cv_n") {
@@ -54,6 +73,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 3), c("Mean", "%CV", "N"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
       # Fix transformation in the data table
@@ -64,6 +89,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 2), c("Mean", "SD"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_se") {
@@ -71,6 +102,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 2), c("Mean", "SEM"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_cv") {
@@ -78,6 +115,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 2), c("Mean", "%CV"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
       # Fix transformation in the data table
@@ -88,6 +131,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 3), c("Mean", "+Error", "-Error"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     } else if(selected_sheet_json$table$dataFormat == "y_high_low") {
@@ -95,6 +144,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       y_col_names <- paste(rep(x = y_col_names, each = 3), c("Mean", "Upper Limit", "Lower Limit"), sep = "_")
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
       # Fix transformation in the data table
@@ -106,6 +161,12 @@ read_prism_archive <- function(dot_prism_file, selected_sheet) {
       y_col_names <- lapply(X = y_datasets, FUN = function(x) {
         fromJSON(archive_read(archive = dot_prism_file, file = subset.data.frame(x = files_in_archive, subset = grepl(pattern = x$uid, x = path))[["rowid"]]))$title
       }[[1]])
+      # For edge cases where the column is NULL, make it an empty string
+      y_col_names <- lapply(X = y_col_names, FUN = function(x) {
+        if(is.null(x)) {
+          x <- ""
+        } else x
+      })
       colnames(sheet_data)[(ncol(sheet_data) - length(y_col_names) + 1):ncol(sheet_data)] <- y_col_names
     }
 

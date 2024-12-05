@@ -22,5 +22,9 @@ test_that("read_prism_archive works correctly with demo files", {
   # selected sheet is NA
   df_list <- list(df_tbl)
   names(df_list) <- "XY: Entering replicate data"
-  expect_equal(read_prism_archive(dot_prism_file = demo_prism, selected_sheet = NA), df_list)
+  expect_equal(read_prism_archive(dot_prism_file = demo_prism, selected_sheet = NA)[1], df_list)
+  # empty column names
+  expect_equal(colnames(read_prism_archive(dot_prism_file = demo_prism, selected_sheet = 6)), c("conc", "Negative", "Negative", "Negative", "", "", ""))
+  # Non-unique sheet names
+  expect_error(read_prism_archive(dot_prism_file = demo_prism, selected_sheet = "Data 6"), "You have chosen multiple sheets. Please choose either just one or `sheet = NA` for all.")
 })

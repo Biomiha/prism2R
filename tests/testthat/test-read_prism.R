@@ -20,8 +20,8 @@ test_that("read_prism works correctly with demo files", {
   names(df_list) <- "XY: Entering replicate data"
 
   # Test with a pzfx file
-  expect_equal(read_prism(demo_pzfx), df_list)
+  expect_equal(read_prism(demo_pzfx)[1], df_list)
 
   # Test with a prism file
-  expect_equal(read_prism(demo_prism), df_list)
+  expect_equal(read_prism(demo_prism)[1], df_list)
 })
