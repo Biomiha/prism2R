@@ -21,7 +21,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = n_rep)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "SDN") { # If the sheet type is a y_sd_n type
       # make new unique y_col_names
@@ -30,7 +30,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 3)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "SEN") { # If the sheet type is a y_se_n type
       # make new unique y_col_names
@@ -39,7 +39,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 3)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "CVN") { # If the sheet type is a y_cv_n type
       # make new unique y_col_names
@@ -48,7 +48,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 3)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "SD") { # If the sheet type is a y_sd type
       # make new unique y_col_names
@@ -57,7 +57,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 2)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "SE") { # If the sheet type is a y_se type
       # make new unique y_col_names
@@ -66,7 +66,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 2)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "CV") { # If the sheet type is a y_cv type
       # make new unique y_col_names
@@ -75,7 +75,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 2)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "low-high") { # If the sheet type is a y_plus_minus type
       # make new unique y_col_names
@@ -84,7 +84,7 @@ read_pzfx_table <- function(pzfx_table) {
         xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = xml_subcol, xpath = ".//Subcolumn")))
       })
       y_vals_all <- lapply(y_vals_all, FUN = function(x) {matrix(data = x, ncol = 3)})
-      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+      y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
       colnames(y_vals_all) <- y_col_names
     } else if(table_attrs[["YFormat"]] == "upper-lower-limits") { # If the sheet type is a y_high_low type
       # make new unique y_col_names
@@ -104,7 +104,7 @@ read_pzfx_table <- function(pzfx_table) {
     for(i in seq_along(y_vals_all)) {
       length(y_vals_all[[i]]) <- n_rows
     }
-    y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)))
+    y_vals_all <- tibble::as_tibble(as.data.frame(Reduce(f = cbind, x = y_vals_all)), .name_repair = "minimal")
     colnames(y_vals_all) <- y_col_names
   }
 
@@ -115,7 +115,7 @@ read_pzfx_table <- function(pzfx_table) {
     x_col_name <- xml2::xml_text(xml2::xml_find_all(x = x_cols_xml, xpath = ".//Title"))
     x_vals <- xml2::xml_text(xml2::xml_children(xml2::xml_find_all(x = x_cols_xml, xpath = ".//Subcolumn")))
     if(table_attrs[["XFormat"]] == "numbers") x_vals <- as.numeric(x_vals)
-    y_vals_all <- tibble::add_column(y_vals_all, x = x_vals, .before = 1)
+    y_vals_all <- tibble::add_column(y_vals_all, x = x_vals, .before = 1, .name_repair = "minimal")
     colnames(y_vals_all) <- c(x_col_name, y_col_names)
   } else if(table_attrs[["XFormat"]] == "none") {
     row_cols_xml <- xml2::xml_find_all(x = pzfx_table, xpath = ".//RowTitlesColumn")
