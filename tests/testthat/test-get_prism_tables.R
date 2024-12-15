@@ -17,3 +17,11 @@ test_that("get_prism_tables handles errors gracefully", {
   file.create(invalid_file)
   expect_error(get_prism_tables(invalid_file), "Not a valid .prism file.")
 })
+
+test_that("get_analysis_tables errors on empty archive", {
+  empty_file <- system.file("extdata/.for_testing", "empty.prism", package = "pRism")
+  expect_error(
+    get_prism_tables(empty_file),
+    "`file` must be a length one character vector or numeric"
+  )
+})

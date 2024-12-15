@@ -14,7 +14,7 @@ read_prism(prism_file, sheet = NA)
 in which case all tables in the file are read.}
 }
 \value{
-A data.frame that tries to reproduce the data table output in prism.
+A data.frame that tries to reproduce the data table output in prism or a named list of data.frames.
 }
 \description{
 Read prism data tables into R
