@@ -61,6 +61,15 @@ names(my_list) <- get_table_names(demo_file)[selected_sheets]
 my_list
 ```
 
+### Get the saved analysis parameters
+The newer `.prism` file type allows access to all the analysis parameters, be that for linear or non-linear regression, or other analysis types. Analysis data tables in Prism usually include multiple (quite often hidden) tabs, that are however parseable. By design the `get_analysis_tables` function will return only the main (in Prism called the preferred tab) that contains the model parameters and coefficients. Other model data is accessible in raw format using the `archive` package as explained below. 
+
+```{r}
+# Get analysis tables from a Prism file (if they exist)
+get_analysis_tables(demo_file)
+```
+
+
 ## Some additional notes
 
 ### Writing out to Prism files
@@ -69,9 +78,23 @@ Personally, I don't think the package needs a function to write dataframes to Pr
 
 In addition, the [pzfx](https://cran.r-project.org/web/packages/pzfx/ "pzfx package") package includes a `write_pzfx` function that can output to a .pzfx file. I think replicating that to export to a .prism would currently be more hassle than it is worth.
 
-### Importing analyses and other metadata contained in Prism files
+### Parsing other metadata contained in Prism files
 
-The new .prism format does actually allow parsing of other tables, not just data tables, but also e.g. line fit parameters and other parts of the analysis workflow (unlike the old .pzfx where this type of data is stored in binary format). I would like to first establish how best to enable parsing of that type of data into R and will attempt to do add that feature when time allows.
+As outlined above the new .prism format does actually allow parsing of other analysis data, not just the model parameters tables, but also e.g. line fit values that are plotted in the Graphs section, as well as other parts of the analysis workflow. Unfortunately, like most of this information in the old `.pzfx` files the graphs even in a `.prism` file are still stored in a proprietary binary format. However, some aspects like lines from a curve fitting analysis are buried in internal `.csv` files. Arguably this will generate a very messy output but could be of use to some people. To access all internal data in raw format you can try:
+
+```{r}
+files_in_archive <- archive::archive(demo_file)
+files_in_archive <- tibble::rowid_to_column(files_in_archive) # will add rowids, which are required later
+
+csv_files <- subset.data.frame(x = files_in_archive, subset = grepl(pattern = "data.csv", x = path))
+
+# Output all .csv files (including the data tables that can be parsed) in raw format in a list with no names
+all_data_raw <- lapply(csv_files$rowid, function(x) {
+  read_csv(file = archive::archive_read(archive = demo_file, file = x), col_names = FALSE)
+})
+head(all_data_raw, n = 3) # First 3 as an example
+```
+Notice that some data tables contain exactly 1000 rows. These are the curve fit values, although the correct table headers will be missing and will need to be assigned manually. 
 
 ### And finally...
 

@@ -5,7 +5,7 @@
 #' \link[pRism]{get_table_names} output or NA (default),
 #' in which case all tables in the file are read.
 #'
-#' @return A data.frame that tries to reproduce the data table output in prism.
+#' @return A data.frame that tries to reproduce the data table output in prism or a named list of data.frames.
 #' @export
 #'
 #' @examples
