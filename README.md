@@ -81,7 +81,7 @@ In addition, the [pzfx](https://cran.r-project.org/web/packages/pzfx/ "pzfx pack
 ### Parsing other metadata contained in Prism files
 
 As outlined above the new `.prism` format does actually allow parsing of other analysis data, not just the model parameters tables, but also e.g. line fit values that are plotted in the Graphs section, as well as other parts of the analysis workflow. 
-Unfortunately, like most of this information in the old `.pzfx` files, the graphs even in a `.prism` file are still stored in a proprietary binary format and therefore unaccessible. That being said, some aspects like lines from a curve fitting analysis are available, albeit buried in internal `.csv` files. I provide an outline how this can be accessed below. Arguably the output is very messy but could perhaps be of use to some people. To access all internal data in raw format you can try:
+Unfortunately, like most of this information in the old `.pzfx` files, the graphs even in a `.prism` file are still stored in a proprietary binary format and therefore inaccessible. That being said, some aspects like lines from a curve fitting analysis are available, albeit buried in internal `.csv` files. I provide an outline how this can be accessed below. Arguably the output is very messy but could perhaps be of use to some people. To access all internal data in raw format you can try:
 
 ```{r}
 files_in_archive <- archive::archive(demo_file)
