@@ -1,7 +1,7 @@
-# pRism: Parse GraphPad Prism Files Into R
+# prism2R: Read GraphPad Prism Files Into R
 ## Brief background
 
-The pRism package is heavily influenced by Yue Jiang's package called [pzfx](https://cran.r-project.org/web/packages/pzfx/ "pzfx package"). I imagine if you are looking at this package you would have most probably used his before. The main (only) reason for a new package is that with Version 10 GraphPad introduced a new file type called `.prism` that is completely different and incompatible with how the old XML-based `.pzfx` file type was parsed.
+The prism2R package is heavily influenced by Yue Jiang's package called [pzfx](https://cran.r-project.org/web/packages/pzfx/ "pzfx package"). I imagine if you are looking at this package you would have most probably used his before. The main (only) reason for a new package is that with Version 10 GraphPad introduced a new file type called `.prism` that is completely different and incompatible with how the old XML-based `.pzfx` file type was parsed.
 
 `.prism` is essentially a zip archive with a quite complicated folder structure that separates the contents into analyses, data, graphs, info, layouts, misc and a document.json that contains the necessary information about how the various bits are connected together. Instead of an XML document type, most useful information is now contained in JSON files, whereas the actual data tables are conveniently now stored in `.csv`s.
 
@@ -12,8 +12,8 @@ I had intended to only write a parser for the `.prism` file type given that [pzf
 The best way is to use the [devtools](https://devtools.r-lib.org/ "devtools package") package and install from github. It seems to understand the dependencies and build requirements. There have been issues reported with other, more lightweight package managers like `remotes` or `pak`.
 
 ```{r, eval=FALSE}
-devtools::install_github("biomiha/pRism", build_vignettes = TRUE)
-library(pRism)
+devtools::install_github("biomiha/prism2R", build_vignettes = TRUE)
+library(prism2R)
 ```
 
 ## How it works
@@ -21,7 +21,7 @@ library(pRism)
 There are currently two main user-visible functions, the `get_prism_tables` and the `read_prism` function. Both take either a `.prism` or a `.pzfx` file as input, work out how to parse the data based on the file extension and then return either a vector of table names in the case of `get_prism_tables` or the actual data in the case of the `read_prism` function.
 
 ```{r}
-demo_file <- system.file("extdata", "demo_dataset.prism", package = "pRism")
+demo_file <- system.file("extdata", "demo_dataset.prism", package = "prism2R")
 get_prism_tables(demo_file)
 ```
 
@@ -99,4 +99,4 @@ Notice that some data tables contain exactly 1000 rows. These are the curve fit 
 
 ### And finally...
 
-There are some internal data transformations with the new format that you wouldn't expect that happen behind the scenes in Prism itself, e.g. data tables of the type Y_CV (with coefficients of variation) are actually represented as percentages rather than raw values and Prism somehow transforms them to numbers before showing them to you as the user in a table. I have had to do replicate that during the parsing process. Different table types require different transformations (most actually don't require any at all) and I've tried to cover all different data types but if you find a bug, please drop me a message on [the package github issues page](https://github.com/Biomiha/pRism/issues "github issues").
+There are some internal data transformations with the new format that you wouldn't expect that happen behind the scenes in Prism itself, e.g. data tables of the type Y_CV (with coefficients of variation) are actually represented as percentages rather than raw values and Prism somehow transforms them to numbers before showing them to you as the user in a table. I have had to do replicate that during the parsing process. Different table types require different transformations (most actually don't require any at all) and I've tried to cover all different data types but if you find a bug, please drop me a message on [the package github issues page](https://github.com/Biomiha/prism2R/issues "github issues").
