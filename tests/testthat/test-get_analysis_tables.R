@@ -1,7 +1,7 @@
 # get_analysis_tables unit tests
 # Test cases
 test_that("get_analysis_tables returns expected tables for demo dataset", {
-  demo_prism <- system.file("extdata", "demo_dataset.prism", package = "pRism")
+  demo_prism <- system.file("extdata", "demo_dataset.prism", package = "prism2R")
   tables <- get_analysis_tables(demo_prism)
 
   expect_named(tables, c("Nonlin fit of XY: Entering replicate data",
@@ -20,7 +20,7 @@ test_that("get_prism_tables handles errors gracefully", {
 })
 
 test_that("get_analysis_tables errors on empty archive", {
-  empty_file <- system.file("extdata/.for_testing", "empty.prism", package = "pRism")
+  empty_file <- system.file("extdata/.for_testing", "empty.prism", package = "prism2R")
   expect_error(
     get_analysis_tables(empty_file),
     "`file` must be a length one character vector or numeric"
@@ -28,6 +28,6 @@ test_that("get_analysis_tables errors on empty archive", {
 })
 
 test_that("get_analysis_tables handles files without analyses", {
-  no_analyses <- system.file("extdata/.for_testing", "no_analysis.prism", package = "pRism")
+  no_analyses <- system.file("extdata/.for_testing", "no_analysis.prism", package = "prism2R")
   expect_equal(length(get_analysis_tables(no_analyses)), 0)
 })
