@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(pRism)
+library(prism2R)
 
-test_check("pRism")
+test_check("prism2R")

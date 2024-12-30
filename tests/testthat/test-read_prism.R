@@ -1,8 +1,8 @@
 # read_prism unit tests
 test_that("read_prism works correctly with demo files", {
   # Read demo file in package
-  demo_pzfx <- system.file("extdata", "demo_dataset.pzfx", package = "pRism")
-  demo_prism <- system.file("extdata", "demo_dataset.prism", package = "pRism")
+  demo_pzfx <- system.file("extdata", "demo_dataset.pzfx", package = "prism2R")
+  demo_prism <- system.file("extdata", "demo_dataset.prism", package = "prism2R")
   df_tbl <- tibble::as_tibble(structure(list(
     Hours = c(0, 6, 12, 24, 48, 72), Control_1 = c(
       45,
