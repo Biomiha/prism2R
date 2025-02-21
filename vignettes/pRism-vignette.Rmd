@@ -34,8 +34,8 @@ I had intended to only write a parser for the `.prism` file type given that [pzf
 The best way is to use the [devtools](https://devtools.r-lib.org/ "devtools package") package and install from github. It seems to understand the dependencies and build requirements. There have been issues reported with other, more lightweight package managers like `remotes` or `pak`.
 
 ```{r, eval=FALSE}
-devtools::install_github("biomiha/pRism", build_vignettes = TRUE)
-library(pRism)
+devtools::install_github("biomiha/prism2R", build_vignettes = TRUE)
+library(prism2R)
 ```
 
 ## How it works
@@ -43,7 +43,7 @@ library(pRism)
 There are currently three main user-visible functions, the `get_prism_tables` and the `read_prism` functions as well as the `get_analysis_tables` function. The first two are meant to read in the data tables from a GraphPad Prism file. They take either a `.prism` or a `.pzfx` file as input, work out how to parse the data based on the file extension and then return either a vector of table names in the case of `get_prism_tables` or the actual data in the case of the `read_prism` function. The `get_analysis_tables` function on the other hand only works with `.prism` files and attempts to output the main analysis parameters from the `.prism` file. A more detailed explanation below. 
 
 ```{r}
-demo_file <- system.file("extdata", "demo_dataset.prism", package = "pRism")
+demo_file <- system.file("extdata", "demo_dataset.prism", package = "prism2R")
 get_prism_tables(demo_file)
 ```
 
