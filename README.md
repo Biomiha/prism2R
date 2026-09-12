@@ -18,11 +18,11 @@ library(prism2R)
 
 ## How it works
 
-There are currently two main user-visible functions, the `get_prism_tables` and the `read_prism` function. Both take either a `.prism` or a `.pzfx` file as input, work out how to parse the data based on the file extension and then return either a vector of table names in the case of `get_prism_tables` or the actual data in the case of the `read_prism` function.
+There are currently two main user-visible functions, the `get_prism_tables` and the `read_prism` function. Both take either a `.prism` or a `.pzfx` file as input, work out how to parse the data based on the file extension and then return either a vector of table names in the case of `get_table_names` or the actual data in the case of the `read_prism` function.
 
 ```{r}
 demo_file <- system.file("extdata", "demo_dataset.prism", package = "prism2R")
-get_prism_tables(demo_file)
+get_table_names(demo_file)
 ```
 
 The `read_prism` function also takes a `sheet` argument. This can either be an integer (the index of the sheet or table that you want to read in), a character string (the name of the data table that you want to read in) or `NA` (the default), in which case all tables in the file will be read in. If the value of the `sheet` argument is provided, it needs to only be lenght one, i.e. you can only read in one or all data tables.
